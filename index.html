@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>prem </title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 
 <body>
-  <div id="header"></div>
+  <div id="header">
+
+  </div>
 
   <center style="color: rgb(255, 255, 255);">
     <h1>Registration Form</h1>
@@ -40,14 +43,17 @@
 
       <div>
         <input type="checkbox" id="admin" name="admin" value="admin">
-        <label for="admin"> admin</label>
+        <label for="admin">admin</label>
         <input type="checkbox" id="client" name="client" value="client">
-        <label for="client"> client</label><br>
+        <label for="client">client</label><br>
       </div>
 
       <label for="phone">Enter your phone number:</label>
       <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
       <span id="phone_err" class="error_msg ">Please provide a valid phone number</span>
+
+      <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Lf2rVEcAAAAAN8h96rPZr8W0MklKVHV7tsauBkH"></div>
+
       <button type="submit" class="registerbtn" onclick="formSubmit(event)"> Register</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -56,13 +62,12 @@
 
     </div>
 
+    <h1><span id="ip" style="color: white;"></span></h1>
 
-  </form>
-  <h1><span id="ip" style="color: white;"></span></h1>
+    <div id="footer"></div>
 
-  <div id="footer"></div>
 
-  <script src="/script.js"></script>
+    <script src="/script.js"></script>
 
 </body>
 

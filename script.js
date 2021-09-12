@@ -1,47 +1,57 @@
+
+
+
+
 function formSubmit(e) {
     e.preventDefault()
+
+    console.log(grecaptcha.getResponse());
     var email = document.getElementById('email');
     var password = document.getElementById('password');
     var phone = document.getElementById('phone');
     var username = document.getElementById('username');
 
+    if (grecaptcha.getResponse()) {
+        if (validateUsername(username.value)) {
+            document.getElementById('user_err').classList.remove("error_msg_show");
+            if (validateEmail(email.value)) {
+                document.getElementById('email_err').classList.remove("error_msg_show");
+                if (validatePassword(password.value)) {
+                    document.getElementById('pass_err').classList.remove("error_msg_show");
+                    if (validatePhone(phone.value)) {
 
-    if (validateUsername(username.value)) {
-        document.getElementById('user_err').classList.remove("error_msg_show");
-        if (validateEmail(email.value)) {
-            document.getElementById('email_err').classList.remove("error_msg_show");
-            if (validatePassword(password.value)) {
-                document.getElementById('pass_err').classList.remove("error_msg_show");
-                if (validatePhone(phone.value)) {
+                        document.getElementById('phone_err').classList.remove("error_msg_show");
+                        window.location.href = "home/home.html";
+                    }
+                    else {
+                        phone.focus();
+                        document.getElementById('phone_err').classList.add("error_msg_show");
+                        // alert("enter your phone correctly")
+                    }
 
-                    document.getElementById('phone_err').classList.remove("error_msg_show");
-
-                    window.location.href = "home/home.html";
                 }
                 else {
-                    phone.focus();
-                    document.getElementById('phone_err').classList.add("error_msg_show");
-                    // alert("enter your phone correctly")
+                    password.focus();
+                    document.getElementById('pass_err').classList.add("error_msg_show");
+                    // alert("please enter password more than 6 digits");
                 }
-
             }
             else {
-                password.focus();
-                document.getElementById('pass_err').classList.add("error_msg_show");
-                // alert("please enter password more than 6 digits");
+                email.focus();
+                document.getElementById('email_err').classList.add("error_msg_show");
+                // alert('Please provide a valid email address');
             }
         }
         else {
-            email.focus();
-            document.getElementById('email_err').classList.add("error_msg_show");
-            // alert('Please provide a valid email address');
+            username.focus();
+            document.getElementById('user_err').classList.add("error_msg_show");
+            //alert("enter your username correctly")
         }
     }
     else {
-        username.focus();
-        document.getElementById('user_err').classList.add("error_msg_show");
-        //alert("enter your username correctly")
+        alert("verify captcha")
     }
+
 
 
     function validateEmail(email) {
@@ -85,22 +95,8 @@ function formSubmit(e) {
         return true;
     }
 
+}
 
-    // fetch("https://api.ipify.org/?format=json")
-    // .then(
-    //     function(response) {
-    //       response.json().then(function(data) {
-    //         document.getElementById('ip').innerText="IP ADDRESS IS: "+data.ip;
-    //       });
-    //     }
-    //   )
-    //   .catch(function(err) {
-    //     console.log('Fetch Error :-S', err);
-    //   });
-}
-function onEmailChange() {
-    console.log("kkk")
-}
 
 
 
